@@ -5,6 +5,7 @@ type DashboardScreenProps = {
   isSubscribed: boolean;
   onSubscribe: () => void;
   onSendNotification: () => void;
+  onSendDelayedNotification: () => void;
   onLogout: () => void;
 };
 
@@ -13,6 +14,7 @@ const DashboardScreen = ({
   isSubscribed,
   onSubscribe,
   onSendNotification,
+  onSendDelayedNotification,
   onLogout,
 }: DashboardScreenProps) => {
   return (
@@ -32,6 +34,9 @@ const DashboardScreen = ({
           </button>
           <button className="secondary-button" onClick={onSendNotification} disabled={!isSubscribed}>
             Send test notification
+          </button>
+          <button className="ghost-button" onClick={onSendDelayedNotification} disabled={!isSubscribed}>
+            Send delayed notification (30s)
           </button>
         </div>
       </div>

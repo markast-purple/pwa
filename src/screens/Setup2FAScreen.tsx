@@ -10,15 +10,9 @@ type Setup2FAScreenProps = {
   onVerify: () => void;
 };
 
-const isAndroidDevice = () =>
-  typeof navigator !== 'undefined' && /android/i.test(navigator.userAgent);
-
-const buildAndroidIntentLink = (uri: string) =>
-  `intent://${uri.replace('://', '/')}#Intent;scheme=otpauth;package=com.google.android.apps.authenticator2;end;`;
 
 const Setup2FAScreen = ({ qrCode, secret, otpUri, token, onTokenChange, onVerify }: Setup2FAScreenProps) => {
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
-  const isAndroid = isAndroidDevice();
 
   const handleCopySecret = async () => {
     if (!secret) {
@@ -50,7 +44,7 @@ const Setup2FAScreen = ({ qrCode, secret, otpUri, token, onTokenChange, onVerify
       return;
     }
 
-    const target = isAndroid ? buildAndroidIntentLink(otpUri) : otpUri;
+    const target = otpUri;
     window.location.href = target;
   };
 

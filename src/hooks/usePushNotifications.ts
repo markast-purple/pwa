@@ -76,6 +76,10 @@ export const usePushNotifications = (isDashboardActive: boolean) => {
     await api.post('/send-notification');
   }, []);
 
+  const triggerDelayedNotification = useCallback(async () => {
+    await api.post('/send-delayed-notification', { delayMs: 30000 });
+  }, []);
+
   const resetSubscriptionState = useCallback(() => {
     setIsSubscribed(false);
   }, []);
@@ -84,6 +88,7 @@ export const usePushNotifications = (isDashboardActive: boolean) => {
     isSubscribed,
     subscribeToPush,
     triggerNotification,
+    triggerDelayedNotification,
     resetSubscriptionState,
   };
 };

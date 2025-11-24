@@ -29,7 +29,13 @@ export const useAuthFlow = ({ isDashboardActive }: UseAuthFlowArgs) => {
     hasSetupContext,
   } = use2FASetup();
 
-  const { isSubscribed, subscribeToPush, triggerNotification, resetSubscriptionState } =
+  const {
+    isSubscribed,
+    subscribeToPush,
+    triggerNotification,
+    triggerDelayedNotification,
+    resetSubscriptionState,
+  } =
     usePushNotifications(isDashboardActive);
 
   const handleLogout = useCallback(async () => {
@@ -57,5 +63,6 @@ export const useAuthFlow = ({ isDashboardActive }: UseAuthFlowArgs) => {
     handleLogout,
     subscribeToPush,
     triggerNotification,
+    triggerDelayedNotification,
   };
 };

@@ -26,6 +26,7 @@ function App() {
     handleLogout,
     subscribeToPush,
     triggerNotification,
+    triggerDelayedNotification,
   } = useAuthFlow({ isDashboardActive: location.pathname === ROUTES.dashboard });
   const {
     showAndroidPrompt,
@@ -85,6 +86,7 @@ function App() {
                 isSubscribed={isSubscribed}
                 onSubscribe={subscribeToPush}
                 onSendNotification={triggerNotification}
+                onSendDelayedNotification={triggerDelayedNotification}
                 onLogout={handleLogout}
               />
             ) : (
